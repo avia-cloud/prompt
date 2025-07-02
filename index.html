@@ -25,8 +25,8 @@
       margin-top: 10px;
     }
     button {
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 14px 28px;
+      font-size: 18px;
       margin-top: 20px;
       width: 100%;
     }
@@ -69,6 +69,10 @@
 
   <button onclick="generateAndCopy()">Generate & Copy</button>
 
+  <div style="margin-top: 80px; text-align: center; font-size: 14px; color: #666;">
+    Made by Avia
+  </div>
+
   <script>
     function generateAndCopy() {
       const promptCount = document.getElementById("promptCount").value;
@@ -92,8 +96,6 @@ Other fixed features (e.g., freckles, facial structure, brow density, etc.): ${o
 
       const basePrompt = `Front-facing close-up portrait in high detail. Shot with an 85mm f/1.4 lens, shallow depth of field for strong subject separation. Studio-quality soft lighting with no harsh shadows, tints, or directional highlights. Background must be fully white and seamless — no textures, gradients, or objects. Natural or slightly positive facial expression. Skin should reveal realistic detail: visible pores, fine lines, asymmetry, or freckles. No visible makeup, editing, filters, or beautification effects. Image must be rendered in high-resolution photorealistic quality.`;
 
-      const negativePrompt = "Negative prompt: no cartoon, no anime, no CGI, no digital art, no stylized appearance, no glowing or perfect skin, no glossy finish, no airbrushed look, no beauty filters, no makeup (any kind), no exaggerated features, no fantasy lighting, no jewelry, no piercings, no tattoos, no wigs, no colored hair, no surreal effects, no blurry images, no distorted anatomy, no low-detail rendering.";
-
       const fullText = `Create ${number} individual prompts, each describing a different person, but ensure they all share the exact same defining traits listed below. Each portrait must be realistic, well-written, and concise — with clear structure and attention to photographic detail.
 
 IMAGE GUIDELINES (APPLY TO ALL PROMPTS):
@@ -105,11 +107,7 @@ OUTPUT FORMAT REQUIREMENT:
 For each of the ${number} prompts below, describe a different individual using the exact same core traits above. Each description must:
 
 Include all required image details listed above
-Reflect variation in facial structure, features, or subtle expressions
-End with the following negative prompt in the same paragraph (do not separate it):
-
-Insert this negative prompt at the end of each portrait description:
-${negativePrompt}`;
+Reflect variation in facial structure, features, or subtle expressions`
 
       navigator.clipboard.writeText(fullText).then(() => {
         alert("Prompt has been successfully generated and copied to clipboard!");
