@@ -44,7 +44,7 @@
     This prompt generator is designed for responsible, personal, and non-commercial use. Please refrain from redistributing the output or presenting it as your original creation in any platform or product. The tool is intended to support creativity and experimentation with ethical awareness. Misuse of this content — including replication for resale, branding, or deceptive AI output presentation — violates the spirit of this tool.
   </div>
 
-  <h2>Text to Image Prompt Generator</h2>
+  <h2>Portrait Prompt Template Filler</h2>
 
   <label>Number of Prompts:</label>
   <input type="number" id="promptCount" placeholder="e.g: 3" min="1">
@@ -83,7 +83,7 @@
       const eyes = document.getElementById("eyes").value;
       const other = document.getElementById("otherTraits").value;
 
-      const number = promptCount || "(number)";
+      const number = promptCount ? promptCount : "1";
 
       const traitsText = `TRAITS TO REMAIN IDENTICAL IN ALL ${number} PROMPTS:
 (Leave a field blank to allow natural variation across the ${number} people)
