@@ -2,15 +2,48 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Portrait Prompt Filler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Image Prompt Generator</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-    input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; }
-    label { font-weight: bold; display: block; margin-top: 10px; }
-    button { padding: 10px 20px; margin-top: 15px; }
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .notice {
+      background-color: #fff3cd;
+      border-left: 6px solid #ffeeba;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
+  <div class="notice">
+    <strong>Important Usage Guidelines:</strong><br>
+    This prompt generator is designed for responsible, personal, and non-commercial use. Please refrain from redistributing the output or presenting it as your original creation in any platform or product. The tool is intended to support creativity and experimentation with ethical awareness. Misuse of this content — including replication for resale, branding, or deceptive AI output presentation — violates the spirit of this tool.
+  </div>
+
   <h2>Portrait Prompt Template Filler</h2>
 
   <label>Number of Prompts:</label>
@@ -23,7 +56,7 @@
   <input type="text" id="age" placeholder="e.g: 25-year-old">
 
   <label>Hair (length, color, texture, part):</label>
-  <input type="text" id="hair" placeholder="e.g: dirty long wavy blonde">
+  <input type="text" id="hair" placeholder="e.g: long, jet black, straight, center-parted">
 
   <label>Skin tone (optional):</label>
   <input type="text" id="skin" placeholder="e.g: warm olive skin tone">
@@ -79,7 +112,7 @@ Insert this negative prompt at the end of each portrait description:
 ${negativePrompt}`;
 
       navigator.clipboard.writeText(fullText).then(() => {
-        alert("Prompt berhasil digenerate dan dicopy ke clipboard!");
+        alert("Prompt has been successfully generated and copied to clipboard!");
       });
     }
   </script>
