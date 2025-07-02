@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Portrait Prompt Filler</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    button { padding: 10px 20px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h2>Portrait Prompt Template Filler</h2>
+
+  <label>Number of Prompts:</label>
+  <input type="number" id="promptCount" placeholder="e.g: 3" min="1">
+
+  <label>Gender:</label>
+  <input type="text" id="gender" placeholder="e.g: female">
+
+  <label>Age:</label>
+  <input type="text" id="age" placeholder="e.g: 25-year-old">
+
+  <label>Hair (length, color, texture, part):</label>
+  <input type="text" id="hair" placeholder="e.g: dirty long wavy blonde">
+
+  <label>Skin tone (optional):</label>
+  <input type="text" id="skin" placeholder="e.g: warm olive skin tone">
+
+  <label>Eye color (optional):</label>
+  <input type="text" id="eyes" placeholder="e.g: warm hazel eyes">
+
+  <label>Other traits (freckles, face shape, eyebrows, dll):</label>
+  <textarea id="otherTraits" placeholder="e.g: lightly freckled, soft oval face shape, naturally full eyebrows, faint expression lines near mouth and eyes"></textarea>
+
+  <button onclick="generateAndCopy()">Generate & Copy</button>
+
+  <script>
+    function generateAndCopy() {
+      const promptCount = document.getElementById("promptCount").value;
+      const gender = document.getElementById("gender").value;
+      const age = document.getElementById("age").value;
+      const hair = document.getElementById("hair").value;
+      const skin = document.getElementById("skin").value;
+      const eyes = document.getElementById("eyes").value;
+      const other = document.getElementById("otherTraits").value;
+
+      const number = promptCount || "(number)";
+
+      const traitsText = `TRAITS TO REMAIN IDENTICAL IN ALL ${number} PROMPTS:
+(Leave a field blank to allow natural variation across the ${number} people)
+Gender: ${gender}
+Age: ${age}
+Hair (length, color, texture, part): ${hair}
+Skin tone (optional): ${skin}
+Eye color (optional): ${eyes}
+Other fixed features (e.g., freckles, facial structure, brow density, etc.): ${other}`;
+
+      const basePrompt = `Front-facing close-up portrait in high detail. Shot with an 85mm f/1.4 lens, shallow depth of field for strong subject separation. Studio-quality soft lighting with no harsh shadows, tints, or directional highlights. Background must be fully white and seamless — no textures, gradients, or objects. Natural or slightly positive facial expression. Skin should reveal realistic detail: visible pores, fine lines, asymmetry, or freckles. No visible makeup, editing, filters, or beautification effects. Image must be rendered in high-resolution photorealistic quality.`;
+
+      const negativePrompt = "Negative prompt: no cartoon, no anime, no CGI, no digital art, no stylized appearance, no glowing or perfect skin, no glossy finish, no airbrushed look, no beauty filters, no makeup (any kind), no exaggerated features, no fantasy lighting, no jewelry, no piercings, no tattoos, no wigs, no colored hair, no surreal effects, no blurry images, no distorted anatomy, no low-detail rendering.";
+
+      const fullText = `Create ${number} individual prompts, each describing a different person, but ensure they all share the exact same defining traits listed below. Each portrait must be realistic, well-written, and concise — with clear structure and attention to photographic detail.
+
+IMAGE GUIDELINES (APPLY TO ALL PROMPTS):
+${basePrompt}
+
+${traitsText}
+
+OUTPUT FORMAT REQUIREMENT:
+For each of the ${number} prompts below, describe a different individual using the exact same core traits above. Each description must:
+
+Include all required image details listed above
+Reflect variation in facial structure, features, or subtle expressions
+End with the following negative prompt in the same paragraph (do not separate it):
+
+Insert this negative prompt at the end of each portrait description:
+${negativePrompt}`;
+
+      navigator.clipboard.writeText(fullText).then(() => {
+        alert("Prompt berhasil digenerate dan dicopy ke clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
