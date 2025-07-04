@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Image Prompt Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .notice {
+      background-color: #fff3cd;
+      border-left: 6px solid #ffeeba;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="notice">
+    <strong>Important Usage Guidelines:</strong><br>
+    This prompt generator is designed for responsible, personal, and non-commercial use. Please refrain from redistributing the output or presenting it as your original creation in any platform or product. The tool is intended to support creativity and experimentation with ethical awareness. Misuse of this content — including replication for resale, branding, or deceptive AI output presentation — violates the spirit of this tool.
+  </div>
+
+  <h2>Portrait Prompt Generator</h2>
+
+  <label>Number of Prompts:</label>
+  <input type="number" id="promptCount" placeholder="e.g: 3" min="1">
+
+  <label>Gender:</label>
+  <input type="text" id="gender" placeholder="e.g: female">
+
+  <label>Age:</label>
+  <input type="text" id="age" placeholder="e.g: 25-year-old">
+
+  <label>Hair (length, color, texture, part):</label>
+  <input type="text" id="hair" placeholder="e.g: long, jet black, straight, center-parted">
+
+  <label>Skin tone (optional):</label>
+  <input type="text" id="skin" placeholder="e.g: warm olive skin tone">
+
+  <label>Eye color (optional):</label>
+  <input type="text" id="eyes" placeholder="e.g: warm hazel eyes">
+
+  <label>Other traits (freckles, face shape, eyebrows, dll):</label>
+  <textarea id="otherTraits" placeholder="e.g: lightly freckled, soft oval face shape, naturally full eyebrows, faint expression lines near mouth and eyes"></textarea>
+
+  <button onclick="generateAndCopy()">Generate & Copy</button>
+
+  <div style="margin-top: 80px; text-align: center; font-size: 14px; color: #666;">
+    Made by Avia
+  </div>
+
+  <script>
+    function generateAndCopy() {
+      const promptCount = document.getElementById("promptCount").value;
+      const gender = document.getElementById("gender").value;
+      const age = document.getElementById("age").value;
+      const hair = document.getElementById("hair").value;
+      const skin = document.getElementById("skin").value;
+      const eyes = document.getElementById("eyes").value;
+      const other = document.getElementById("otherTraits").value;
+
+      const number = promptCount ? promptCount : "1";
+
+      const traitsText = `TRAITS TO REMAIN IDENTICAL IN ALL ${number} PROMPTS:
+(If a field is left blank, natural variation will be applied across the ${number} people)
+Gender: ${gender}
+Age: ${age}
+Hair (length, color, texture, part): ${hair}
+Skin tone (optional): ${skin}
+Eye color (optional): ${eyes}
+Other fixed features (e.g., freckles, facial structure, brow density, etc.): ${other}`;
+
+      const basePrompt = `Front-facing close-up portrait in high detail. Shot with an 85mm f/1.4 lens, shallow depth of field for strong subject separation. Studio-quality soft lighting with no harsh shadows, tints, or directional highlights. Background must be fully white and seamless — no textures, gradients, or objects. Natural or slightly positive facial expression. Skin should reveal realistic detail: visible pores, fine lines, asymmetry, or freckles. No visible makeup, editing, filters, or beautification effects. Image must be rendered in high-resolution photorealistic quality.`;
+
+      const fullText = `Create ${number} individual prompts, each describing a different person, but ensure they all share the exact same defining traits listed below. Each portrait must be realistic, well-written, and concise — with clear structure and attention to photographic detail.
+
+IMAGE GUIDELINES (APPLY TO ALL PROMPTS):
+${basePrompt}
+
+${traitsText}
+
+OUTPUT FORMAT REQUIREMENT:
+For each of the ${number} prompts below, describe a different individual using the exact same core traits above. Each description must:
+
+Include all required image details listed above
+Reflect variation in facial structure, features, or subtle expressions`
+
+      navigator.clipboard.writeText(fullText).then(() => {
+        alert("Prompt has been successfully generated and copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
